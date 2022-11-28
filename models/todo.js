@@ -7,7 +7,11 @@ const todoSchema = new mongoose.Schema({
     },
     tasks: [{
         type: String
-    }]
+    }],
+    isCompleted: {
+        type: Boolean,
+        default: false
+    }
 },{timestamps: true})
 
 

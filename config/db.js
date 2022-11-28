@@ -8,6 +8,7 @@ const connectDB = () => {
         console.log("DATABASE CONNECTED.");
     }).catch(err => {
         console.log("DATABASE CONNECTION FAILD");
+        console.log(err);
     })
 }
 

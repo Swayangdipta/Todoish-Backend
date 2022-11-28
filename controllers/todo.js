@@ -1,4 +1,5 @@
 const Todo = require('../models/todo')
+// const _ = require("lodash")
 
 exports.getTodoById = (req,res,next,id) =>{
     Todo.findById(id).exec((err,todo)=>{
@@ -37,5 +38,15 @@ exports.removeTodo = (req,res) => {
         }
 
         return res.json({todo: deletedTodo.title})
+    })
+}
+
+exports.editTodoTask = (req,res) => {
+    Todo.findByIdAndUpdate(req.todo._id,{tasks: req.body.tasks || req.todo.tasks,title: req.body.title || req.todo.title,isCompleted: req.body.isCompleted || false},(err,updatedTodo)=>{
+        if(err){
+            return res.status(400).json({error: "Faild to update todo. Refresh!",body: err})
+        }
+
+        return res.json(updatedTodo)
     })
 }
